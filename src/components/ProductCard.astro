@@ -1,0 +1,35 @@
+---
+const { product } = Astro.props;
+import "../styles/style.css";
+---
+
+<article>
+  <h1>{product.productdisplayname}</h1>
+  <p class="product-price">{product.price} kr</p>
+  <div class="image-container">
+    <img
+      src={`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}
+      alt={product.productdisplayname}
+    />
+  </div>
+</article>
+
+<style>
+  article {
+    display: subgrid; /* Definerer at artiklerne skal bruge subgrid */
+    grid-column: span 1; /* Hvert element bruger en kolonne */
+    grid-row: auto; /* Row tilpasses automatisk */
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease; /* Tilføjer en glidende overgang */
+  }
+
+  article:hover {
+    transform: scale(1.05); /* Forstørrer kortet lidt */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Øger skyggen */
+  }
+</style>

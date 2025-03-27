@@ -1,0 +1,28 @@
+/* *************** Reset ********************* */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* Definerer tre kolonner */
+  grid-template-rows: auto; /* Sæt rækkehøjder til automatisk */
+  gap: 16px; /* Giver mellemrum mellem rækker og kolonner */
+}
+
+.product-price {
+  font-size: 1.2rem; /* Ændrer størrelsen på prisen */
+  font-weight: bold; /* Gør prisen fed */
+  color: grey;
+  margin-top: 0.5rem; /* Lidt afstand over prisen */
+  margin-bottom: 1rem; /* Lidt afstand under prisen */
+}
