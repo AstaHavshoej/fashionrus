@@ -1,5 +1,6 @@
 ---
 //@ts-nocheck
+
 const fashionURL = "https://kea-alt-del.dk/t7/api/products/";
 const data = await fetch(fashionURL).then((res) => res.json());
 console.log(data);
@@ -7,7 +8,7 @@ import ProductCard from "../components/ProductCard.astro";
 import "../styles/style.css";
 ---
 
-<h1>Productlist</h1>
+<h1>Products</h1>
 <main>
   {data.map((product) => <ProductCard product={product} />)}
 </main>

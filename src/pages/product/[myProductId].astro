@@ -1,0 +1,94 @@
+---
+//@ts-nocheck
+import Layout from "../../layouts/Layout.astro";
+export async function getStaticPaths() {
+  const fashionURL = "https://kea-alt-del.dk/t7/api/products";
+  const data = await fetch(fashionURL).then((res) => res.json());
+
+  return data.map((product) => {
+    return {
+      params: { myProductId: product.id },
+      props: { myProduct: product },
+    };
+  });
+}
+const { myProduct } = Astro.props;
+---
+
+<Layout>
+  <article class="card_container">
+    <!-- <div class="image_container"> -->
+    <img
+      src={`https://kea-alt-del.dk/t7/images/webp/640/${myProduct.id}.webp`}
+      alt="Billede af tøj"
+    />
+    <!-- </div> -->
+    <div class="text_container">
+      <h1>{myProduct.productdisplayname}</h1>
+      <p>Category: {myProduct.category}</p>
+      <p>Price: {myProduct.price} kr</p>
+      <p>Brandname: {myProduct.brandname}</p>
+      <p>Gender: {myProduct.gender}</p>
+
+      <!-- Størrelsesvælger -->
+      <div class="size_selector">
+        <label for="size">Choose size:</label>
+        <select id="size" name="size">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select>
+      </div>
+      <button class="add_to_basket_btn">Add to Basket</button>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .card_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    margin: 20px auto;
+    max-width: 1000px;
+  }
+  .size_selector {
+    margin-top: 10px;
+  }
+
+  .size_selector select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    background-color: #fff;
+  }
+
+  .add_to_basket_btn {
+    margin-top: 10px;
+    padding: 12px 24px;
+    background-color: grey;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .add_to_basket_btn:hover {
+    background-color: lightgrey;
+    transform: scale(1.05);
+  }
+</style>

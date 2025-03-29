@@ -12,7 +12,14 @@ video {
   display: block;
 }
 
+h1 {
+  font-size: 4rem;
+  margin: 1.5rem;
+  text-align: center;
+  font-weight: lighter;
+}
 main {
+  background-color: grey;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr; /* Definerer tre kolonner */
   grid-template-rows: auto; /* Sæt rækkehøjder til automatisk */
@@ -22,7 +29,6 @@ main {
 .product-price {
   font-size: 1.2rem; /* Ændrer størrelsen på prisen */
   font-weight: bold; /* Gør prisen fed */
-  color: grey;
   margin-top: 0.5rem; /* Lidt afstand over prisen */
   margin-bottom: 1rem; /* Lidt afstand under prisen */
 }
