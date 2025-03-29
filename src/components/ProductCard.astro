@@ -1,35 +1,110 @@
 ---
+//@ts-nocheck
 const { product } = Astro.props;
 import "../styles/style.css";
 ---
 
 <article>
-  <h1>{product.productdisplayname}</h1>
-  <p class="product-price">{product.price} kr</p>
   <div class="image-container">
     <img
       src={`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}
       alt={product.productdisplayname}
+      class="product-image"
     />
+  </div>
+  <h1 class="card_title">{product.productdisplayname}</h1>
+  <p class="product-price">{product.price} kr</p>
+  {
+    product.discount !== null && (
+      <p class="discount">Discount {product.discount}%</p>
+    )
+  }
+  {product.soldout == 1 && <p class="soldout">Sold out</p>}
+  <div class="action-container">
+    <a href={`/product/${product.id}`} class="see-more">See more</a>
   </div>
 </article>
 
 <style>
   article {
-    display: subgrid; /* Definerer at artiklerne skal bruge subgrid */
-    grid-column: span 1; /* Hvert element bruger en kolonne */
-    grid-row: auto; /* Row tilpasses automatisk */
-    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa;
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     transition:
       transform 0.3s ease,
-      box-shadow 0.3s ease; /* Tilføjer en glidende overgang */
+      box-shadow 0.3s ease;
   }
 
   article:hover {
-    transform: scale(1.05); /* Forstørrer kortet lidt */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Øger skyggen */
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .image-container {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .card_title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0.5rem 0;
+  }
+
+  .product-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #444;
+    margin: 0.2rem 0;
+  }
+
+  .discount {
+    color: #d9534f;
+    font-size: 1rem;
+    background-color: #fee;
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+  }
+
+  .soldout {
+    color: #d9534f;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  .action-container {
+    margin-top: 1rem;
+  }
+
+  .see-more {
+    background-color: grey;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .see-more:hover {
+    background-color: darkgray;
   }
 </style>
